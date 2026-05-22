@@ -1,0 +1,29 @@
+/* ===== GVD Legal Pages — shared styles ===== */
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Fredoka:wght@400;500;600&display=swap');
+
+:root{
+  --heaven:#1f6fe0; --hell:#d6281e; --ink:#15151a; --paper:#f4f1e8; --gold:#ffc01e;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:'Fredoka',system-ui,sans-serif;
+  background:var(--ink); color:var(--paper); line-height:1.7;
+}
+.legal-nav{
+  display:flex;justify-content:space-between;align-items:center;padding:14px 28px;
+  background:linear-gradient(90deg,#0f4aa8,#8c1109); box-shadow:0 2px 20px rgba(0,0,0,.4);
+}
+.legal-nav a.brand{font-family:'Bangers';font-size:1.4rem;color:#fff;text-decoration:none;text-shadow:2px 2px 0 #000}
+.legal-nav a.back{color:#fff;text-decoration:none;font-weight:600;font-size:.9rem}
+.legal-nav a.back:hover{color:var(--gold)}
+.legal-wrap{max-width:780px;margin:0 auto;padding:60px 24px 90px}
+.legal-wrap h1{font-family:'Bangers';font-size:2.6rem;color:var(--gold);text-shadow:2px 2px 0 #000;margin-bottom:6px}
+.legal-wrap .updated{color:#8b868f;font-size:.85rem;margin-bottom:36px}
+.legal-wrap h2{font-family:'Bangers';font-size:1.5rem;color:#fff;margin:34px 0 12px;letter-spacing:.5px}
+.legal-wrap p{margin-bottom:14px;color:#d8d3da}
+.legal-wrap ul{margin:0 0 16px 22px;color:#d8d3da}
+.legal-wrap li{margin-bottom:8px}
+.legal-wrap a{color:var(--gold)}
+.legal-foot{text-align:center;padding:30px;border-top:2px solid var(--gold);color:#6b666f;font-size:.82rem}
+/* EDIT NOTE: fields you may want to change are wrapped in <span class="editable"> */
+.editable{} /* purely a marker for you; no visual effect */
