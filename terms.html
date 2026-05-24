@@ -8,13 +8,14 @@
   <link rel="stylesheet" href="legal.css">
 </head>
 <body>
-  <header class="legal-header">
-    <a href="index.html" class="legal-home-link">← God vs the Devil</a>
-  </header>
+<nav class="legal-nav">
+  <a class="brand" href="index.html">GOD vs THE DEVIL</a>
+  <a class="back" href="index.html">← Back to site</a>
+</nav>
 
-  <main class="legal-main">
+<main class="legal-wrap">
     <h1>Terms of Service</h1>
-    <p class="legal-updated">Last updated: May 2026</p>
+    <p class="updated">Last updated: <span class="editable">May 2026</span></p>
 
     <p>
       Welcome to godvsthedevil.com (the "Site"). These Terms of Service ("Terms")
@@ -154,22 +155,14 @@
       <a href="mailto:mayhem@godvsthedevil.com">mayhem@godvsthedevil.com</a>.
     </p>
 
-    <p class="legal-note">
+    <p>
       These Terms are provided as a general starting point for the Site and do not
       constitute legal advice. We recommend review by a qualified attorney before
       relying on them for commercial activity such as paid subscriptions or merchandise sales.
     </p>
-  </main>
+</main>
 
-  <footer class="legal-footer">
-    <nav class="legal-nav">
-      <a href="index.html">Home</a>
-      <a href="privacy.html">Privacy Policy</a>
-      <a href="security.html">Security Policy</a>
-      <a href="email-policy.html">Email Policy</a>
-      <a href="terms.html">Terms of Service</a>
-    </nav>
-    <p class="legal-copyright">© 2026 God vs the Devil. All rights reserved.</p>
-  </footer>
+<footer class="legal-foot">© <span id="yr"></span> God vs the Devil · by Dr. K</footer>
+<script>document.getElementById('yr').textContent=new Date().getFullYear();</script>
 </body>
 </html>
