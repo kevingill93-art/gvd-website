@@ -214,7 +214,7 @@
     margin-top:14px;font-size:.98rem;line-height:1.55;color:#fff;
     position:relative;z-index:3;text-shadow:1px 1px 0 rgba(0,0,0,.5);
   }
-  .char-fish{background:linear-gradient(150deg,var(--heaven) 0%, var(--heaven-deep) 100%)}
+  .char-fish{background:radial-gradient(ellipse at 42% 28%, #fff2a0 0%, #ffe033 20%, #ffc01e 45%, #e88c00 72%, #b86500 100%)}
   .char-skunk{background:linear-gradient(150deg,#2a2a32 0%, #0c0c10 100%)}
   .char-skunk .char-name{transform:rotate(1.2deg)}
   .char-ricky{background:linear-gradient(150deg,var(--hell) 0%, var(--hell-deep) 100%)}
@@ -222,7 +222,9 @@
   .char-ricky .char-name .role{color:var(--heaven)}
 
   /* Gallery / Cast */
-  .gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:22px;}
+  .gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;}
+  @media(max-width:900px){.gallery{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:480px){.gallery{grid-template-columns:1fr}}
   .card{
     position:relative;border-radius:14px;overflow:hidden;aspect-ratio:1;
     cursor:pointer;transition:transform .25s ease;
@@ -281,17 +283,33 @@
   .card:has(.portrait-wrap img) .initials{display:none}
   .char:has(.portrait img) .mono{display:none}
 
-  /* card colorways */
-  .card-fish{background:radial-gradient(circle at 30% 30%, #4a93f5, var(--heaven-deep))}
-  .card-skunk{background:repeating-linear-gradient(135deg,#1a1a20 0 18px,#0a0a0e 18px 36px)}
-  .card-skunk .initials{color:var(--gold)}
-  .card-ricky{background:radial-gradient(circle at 30% 30%, #e85a4e, var(--hell-deep))}
-  .card-gary{background:linear-gradient(160deg,#2a5d3a 0%, #143020 100%)}
-  .card-gary .initials{color:var(--gold)}
-  .card-boomer{background:linear-gradient(160deg,var(--gold) 0%, #b88600 100%)}
-  .card-boomer .initials{color:var(--ink);text-shadow:6px 6px 0 rgba(0,0,0,.35);-webkit-text-stroke:3px #0a0a0e}
-  .card-sparkles{background:linear-gradient(160deg,#e5c8ff 0%, #8a4fbf 100%)}
+  /* card colorways — The Cast */
+  .card-gary{
+    background:linear-gradient(135deg,#d8d8d8 0%,#f0f0f0 20%,#b0b0b8 40%,#e8e8ee 60%,#c0c0cc 80%,#dcdce8 100%);
+    position:relative;overflow:hidden;
+  }
+  .card-gary::before{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(105deg,transparent 30%,rgba(255,255,255,.55) 50%,transparent 70%);
+    background-size:200% 100%;
+    animation:sheen 3.2s ease-in-out infinite;
+  }
+  @keyframes sheen{0%{background-position:200%}100%{background-position:-200%}}
+  .card-gary .initials{color:#2a2a38;-webkit-text-stroke:3px rgba(255,255,255,.6);text-shadow:4px 4px 0 rgba(0,0,0,.25)}
+  .card-boomer{background:linear-gradient(160deg,#aaff00 0%,#77cc00 100%)}
+  .card-boomer .initials{color:#1a3a00;-webkit-text-stroke:3px #0a0a0e;text-shadow:6px 6px 0 rgba(0,0,0,.3)}
+  .card-sparkles{background:linear-gradient(160deg,#c97dff 0%,#7b2fbe 100%)}
   .card-sparkles .initials{color:#fff}
+  .card-dale{background:linear-gradient(160deg,#ff3d9a 0%,#cc006a 100%)}
+  .card-dale .initials{color:#fff}
+  .card-barneby{background:linear-gradient(160deg,#2436c8 0%,#0d1a7e 100%)}
+  .card-barneby .initials{color:#fff}
+  .card-merlin{background:linear-gradient(160deg,#0a3d0a 0%,#001800 100%)}
+  .card-merlin .initials{color:#00dd44;-webkit-text-stroke:3px rgba(0,0,0,.7);text-shadow:0 0 18px rgba(0,220,60,.6),6px 6px 0 #000}
+  .card-almost{background:linear-gradient(160deg,#0099ee 0%,#33bbff 40%,#c8eeff 80%,#f0faff 100%)}
+  .card-almost .initials{color:#003366;-webkit-text-stroke:3px rgba(255,255,255,.5);text-shadow:4px 4px 0 rgba(0,0,0,.25)}
+  .card-scratch{background:radial-gradient(ellipse at 50% 60%,#ff5500 0%,#cc2200 30%,#8b0000 65%,#3a0000 100%)}
+  .card-scratch .initials{color:#ffcc00;-webkit-text-stroke:3px #3a0000;text-shadow:0 0 16px rgba(255,80,0,.7),6px 6px 0 #000}
 
   /* Signup */
   .signup{background:var(--ink);text-align:center}
@@ -417,7 +435,7 @@
       </div>
       <div class="char-name">
         <h3>Dr. Fish</h3>
-        <div class="role">Disgraced Astrophysicist</div>
+        <div class="role">Recovering Black Ops PhD</div>
       </div>
       <p>Black-ops physicist turned tenured professor fired for exposing the truth. Three PhDs. Zero chill. Now herding cats at a private Christian school. Currently a fish out of water.</p>
     </article>
@@ -460,33 +478,7 @@
     <p>Misfits in the middle of an eternal rivalry. Episodes drop soon.</p>
   </div>
   <div class="gallery">
-    <div class="card card-fish sticker">
-      <span class="halftone" aria-hidden="true"></span>
-      <span class="accent">+</span>
-      <div class="portrait-wrap">
-        <!-- Drop image here: <img src="images/dr-fish.png" alt=""> -->
-      </div>
-      <span class="initials">DF</span>
-      <div class="tag">Dr. Fish <small>Disgraced PhD</small></div>
-    </div>
-    <div class="card card-skunk sticker">
-      <span class="halftone" aria-hidden="true"></span>
-      <span class="accent">~</span>
-      <div class="portrait-wrap">
-        <!-- Drop image here: <img src="images/fart-skunk.png" alt=""> -->
-      </div>
-      <span class="initials">FS</span>
-      <div class="tag">Fart Skunk <small>Best Friend</small></div>
-    </div>
-    <div class="card card-ricky sticker">
-      <span class="halftone" aria-hidden="true"></span>
-      <span class="accent">!</span>
-      <div class="portrait-wrap">
-        <!-- Drop image here: <img src="images/coach-ricky.png" alt=""> -->
-      </div>
-      <span class="initials">CR</span>
-      <div class="tag">Coach Ricky <small>The Coach</small></div>
-    </div>
+    <!-- Row 1 -->
     <div class="card card-gary sticker">
       <span class="halftone" aria-hidden="true"></span>
       <span class="accent">?</span>
@@ -503,7 +495,7 @@
         <!-- Drop image here: <img src="images/boomer.png" alt=""> -->
       </div>
       <span class="initials">BM</span>
-      <div class="tag">Boomer <small>The Dad</small></div>
+      <div class="tag">Boomer <small>Youth Pastor</small></div>
     </div>
     <div class="card card-sparkles sticker">
       <span class="halftone" aria-hidden="true"></span>
@@ -512,7 +504,57 @@
         <!-- Drop image here: <img src="images/sparkles.png" alt=""> -->
       </div>
       <span class="initials">SP</span>
-      <div class="tag">Sparkles <small>The Wildcard</small></div>
+      <div class="tag">Sparkles <small>Wild &#8220;<em>Child</em>&#8221;</small></div>
+    </div>
+    <div class="card card-dale sticker">
+      <span class="halftone" aria-hidden="true"></span>
+      <span class="accent">#</span>
+      <div class="portrait-wrap">
+        <!-- Drop image here: <img src="images/dale-worthington.png" alt=""> -->
+      </div>
+      <span class="initials">DW</span>
+      <div class="tag">Dale Worthington <small>The Prez</small></div>
+    </div>
+    <!-- Row 2 -->
+    <div class="card card-barneby sticker">
+      <span class="halftone" aria-hidden="true"></span>
+      <span class="accent">&#9733;</span>
+      <div class="portrait-wrap">
+        <!-- Drop image here: <img src="images/barneby-fitch.png" alt=""> -->
+      </div>
+      <span class="initials">BF</span>
+      <div class="tag">Barneby Fitch <small>Ranking Overcompensator</small></div>
+    </div>
+    <div class="card card-merlin sticker">
+      <span class="halftone" aria-hidden="true"></span>
+      <span class="accent">&#8734;</span>
+      <div class="portrait-wrap">
+        <!-- Drop image here: <img src="images/merlin.png" alt=""> -->
+      </div>
+      <span class="initials">ML</span>
+      <div class="tag">Merlin <small>Matrix Architect</small></div>
+    </div>
+    <!-- Al Most faces RIGHT toward Nick Scratch — image orientation note -->
+    <div class="card card-almost sticker">
+      <span class="halftone" aria-hidden="true"></span>
+      <span class="accent">&#9760;</span>
+      <div class="portrait-wrap">
+        <!-- Drop image here: <img src="images/al-most.png" alt="">
+             IMAGE: faces RIGHT, arms out, palms up, mid-complaint toward Nick Scratch -->
+      </div>
+      <span class="initials">AM</span>
+      <div class="tag">Al Most <small>Not God</small></div>
+    </div>
+    <!-- Nick Scratch faces LEFT toward Al Most — always placed last -->
+    <div class="card card-scratch sticker">
+      <span class="halftone" aria-hidden="true"></span>
+      <span class="accent">&#8224;</span>
+      <div class="portrait-wrap">
+        <!-- Drop image here: <img src="images/nick-scratch.png" alt="">
+             IMAGE: faces LEFT, arms crossed or finger pointing, dismissive toward Al Most -->
+      </div>
+      <span class="initials">NS</span>
+      <div class="tag">Nick Scratch <small>Not The Devil</small></div>
     </div>
   </div>
 </section>
