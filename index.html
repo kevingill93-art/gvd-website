@@ -564,11 +564,49 @@
     <h2>Join the Mayhem</h2>
     <p>New episodes, memes, and chaos — delivered. No spam. Unsubscribe in one click, anytime.</p>
     <div id="email-signup-mount">
-      <div class="placeholder-form">
-        <input type="email" placeholder="your@email.com" aria-label="Email address">
-        <button class="btn btn-gold" type="button">Sign Up</button>
-      </div>
+      <form id="gvd-subscribe" class="placeholder-form" novalidate>
+        <input type="email" id="gvd-email" placeholder="your@email.com" aria-label="Email address" required>
+        <button class="btn btn-gold" type="submit">Sign Up</button>
+      </form>
     </div>
+    <script>
+    (function(){
+      var form=document.getElementById('gvd-subscribe');
+      var mount=document.getElementById('email-signup-mount');
+      form.addEventListener('submit',function(e){
+        e.preventDefault();
+        var email=document.getElementById('gvd-email').value.trim();
+        var btn=form.querySelector('button');
+        var prev=mount.querySelector('.gvd-msg');
+        if(prev)prev.remove();
+        btn.disabled=true;btn.textContent='Signing up…';
+        fetch('https://postiz.godvsthedevil.com/gvd-relay/subscribe',{
+          method:'POST',
+          headers:{'Content-Type':'application/json'},
+          body:JSON.stringify({email:email})
+        })
+        .then(function(r){return r.json();})
+        .then(function(d){
+          if(d.status==='ok'){
+            mount.innerHTML='<p class="gvd-msg" style="color:#ffe033;font-size:1.15rem;font-family:Fredoka;margin:0">You\'re in. Chaos incoming. 😈</p>';
+          } else {
+            btn.disabled=false;btn.textContent='Sign Up';
+            var m=document.createElement('p');
+            m.className='gvd-msg';m.style.cssText='color:#ff6b6b;margin:8px 0 0;font-size:.9rem';
+            m.textContent='Something went wrong — try again.';
+            mount.appendChild(m);
+          }
+        })
+        .catch(function(){
+          btn.disabled=false;btn.textContent='Sign Up';
+          var m=document.createElement('p');
+          m.className='gvd-msg';m.style.cssText='color:#ff6b6b;margin:8px 0 0;font-size:.9rem';
+          m.textContent='Something went wrong — try again.';
+          mount.appendChild(m);
+        });
+      });
+    })();
+    </script>
     <p class="fineprint">We respect your inbox. See our <a href="privacy.html" style="color:var(--gold)">Privacy Policy</a>.</p>
   </div>
 </section>
