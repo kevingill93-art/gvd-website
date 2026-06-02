@@ -573,12 +573,21 @@
     (function(){
       var form=document.getElementById('gvd-subscribe');
       var mount=document.getElementById('email-signup-mount');
+      if(!form||!mount)return;
+      var EMAIL_RE=/^[^@\s]+@[^@\s]+\.[^@\s]+$/;
       form.addEventListener('submit',function(e){
         e.preventDefault();
-        var email=document.getElementById('gvd-email').value.trim();
+        var email=(document.getElementById('gvd-email').value||'').trim();
         var btn=form.querySelector('button');
         var prev=mount.querySelector('.gvd-msg');
         if(prev)prev.remove();
+        if(!email||!EMAIL_RE.test(email)){
+          var ve=document.createElement('p');
+          ve.className='gvd-msg';ve.style.cssText='color:#ff6b6b;margin:8px 0 0;font-size:.9rem';
+          ve.textContent='Enter a valid email address.';
+          mount.appendChild(ve);
+          return;
+        }
         btn.disabled=true;btn.textContent='Signing up…';
         fetch('https://postiz.godvsthedevil.com/gvd-relay/subscribe',{
           method:'POST',
@@ -601,7 +610,7 @@
           btn.disabled=false;btn.textContent='Sign Up';
           var m=document.createElement('p');
           m.className='gvd-msg';m.style.cssText='color:#ff6b6b;margin:8px 0 0;font-size:.9rem';
-          m.textContent='Something went wrong — try again.';
+          m.textContent='Could not connect — try again or email mayhem@godvsthedevil.com';
           mount.appendChild(m);
         });
       });
