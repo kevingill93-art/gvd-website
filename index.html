@@ -572,6 +572,7 @@
     <div id="email-signup-mount">
       <form id="gvd-subscribe" class="placeholder-form" novalidate>
         <input type="email" id="gvd-email" placeholder="your@email.com" aria-label="Email address" required>
+        <input type="tel" id="gvd-phone" placeholder="Phone (optional)" aria-label="Phone number (optional)" autocomplete="tel">
         <button class="btn btn-gold" type="submit">Sign Up</button>
       </form>
     </div>
@@ -584,6 +585,8 @@
       form.addEventListener('submit',function(e){
         e.preventDefault();
         var email=(document.getElementById('gvd-email').value||'').trim();
+        var phoneEl=document.getElementById('gvd-phone');
+        var phone=phoneEl?(phoneEl.value||'').trim():'';
         var btn=form.querySelector('button');
         var prev=mount.querySelector('.gvd-msg');
         if(prev)prev.remove();
@@ -598,12 +601,12 @@
         fetch('https://postiz.godvsthedevil.com/gvd-relay/subscribe',{
           method:'POST',
           headers:{'Content-Type':'application/json'},
-          body:JSON.stringify({email:email})
+          body:JSON.stringify(phone?{email:email,phone:phone}:{email:email})
         })
         .then(function(r){return r.json();})
         .then(function(d){
           if(d.status==='ok'){
-            mount.innerHTML='<p class="gvd-msg" style="color:#ffe033;font-size:1.15rem;font-family:Fredoka;margin:0">You\'re in. Chaos incoming. 😈</p>';
+            mount.innerHTML='<p class="gvd-msg" style="color:#ffe033;font-size:1.2rem;font-family:Fredoka;margin:0">Welcome to the madness. Check your inbox. 😈</p>';
           } else {
             btn.disabled=false;btn.textContent='Sign Up';
             var m=document.createElement('p');
