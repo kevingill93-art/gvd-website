@@ -588,63 +588,14 @@
 <section class="block signup" id="signup">
   <div class="signup-box">
     <h2>Join the Mayhem</h2>
-    <p>New episodes, memes, and chaos — delivered. No spam. Unsubscribe in one click, anytime.</p>
+    <p>Email signup is temporarily paused while we move to a new provider.</p>
     <div id="email-signup-mount">
-      <form id="gvd-subscribe" class="placeholder-form" novalidate>
-        <input type="email" id="gvd-email" placeholder="your@email.com" aria-label="Email address" required>
-        <input type="tel" id="gvd-phone" placeholder="Phone (optional)" aria-label="Phone number (optional)" autocomplete="tel">
-        <button class="btn btn-gold" type="submit">Sign Up</button>
+      <form id="gvd-subscribe" class="placeholder-form" novalidate aria-label="Email signup temporarily paused">
+        <input type="email" id="gvd-email" placeholder="Signup temporarily paused" aria-label="Email signup temporarily paused" disabled>
+        <button class="btn btn-gold" type="button" disabled>Signup Paused</button>
       </form>
+      <p class="gvd-msg" style="color:#ffe033;margin:8px 0 0;font-size:.9rem">Follow us on YouTube for new episodes and updates.</p>
     </div>
-    <script>
-    (function(){
-      var form=document.getElementById('gvd-subscribe');
-      var mount=document.getElementById('email-signup-mount');
-      if(!form||!mount)return;
-      var EMAIL_RE=/^[^@\s]+@[^@\s]+\.[^@\s]+$/;
-      form.addEventListener('submit',function(e){
-        e.preventDefault();
-        var email=(document.getElementById('gvd-email').value||'').trim();
-        var phoneEl=document.getElementById('gvd-phone');
-        var phone=phoneEl?(phoneEl.value||'').trim():'';
-        var btn=form.querySelector('button');
-        var prev=mount.querySelector('.gvd-msg');
-        if(prev)prev.remove();
-        if(!email||!EMAIL_RE.test(email)){
-          var ve=document.createElement('p');
-          ve.className='gvd-msg';ve.style.cssText='color:#ff6b6b;margin:8px 0 0;font-size:.9rem';
-          ve.textContent='Enter a valid email address.';
-          mount.appendChild(ve);
-          return;
-        }
-        btn.disabled=true;btn.textContent='Signing up…';
-        fetch('https://postiz.godvsthedevil.com/gvd-relay/subscribe',{
-          method:'POST',
-          headers:{'Content-Type':'application/json'},
-          body:JSON.stringify(phone?{email:email,phone:phone}:{email:email})
-        })
-        .then(function(r){return r.json();})
-        .then(function(d){
-          if(d.status==='ok'){
-            mount.innerHTML='<p class="gvd-msg" style="color:#ffe033;font-size:1.2rem;font-family:Fredoka;margin:0">Welcome to the madness. Check your inbox. 😈</p>';
-          } else {
-            btn.disabled=false;btn.textContent='Sign Up';
-            var m=document.createElement('p');
-            m.className='gvd-msg';m.style.cssText='color:#ff6b6b;margin:8px 0 0;font-size:.9rem';
-            m.textContent='Something went wrong — try again.';
-            mount.appendChild(m);
-          }
-        })
-        .catch(function(){
-          btn.disabled=false;btn.textContent='Sign Up';
-          var m=document.createElement('p');
-          m.className='gvd-msg';m.style.cssText='color:#ff6b6b;margin:8px 0 0;font-size:.9rem';
-          m.textContent='Could not connect — try again or email mayhem@godvsthedevil.com';
-          mount.appendChild(m);
-        });
-      });
-    })();
-    </script>
     <p class="fineprint">We respect your inbox. See our <a href="privacy.html" style="color:var(--gold)">Privacy Policy</a>.</p>
   </div>
 </section>
