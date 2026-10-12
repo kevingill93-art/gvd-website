@@ -37,4 +37,10 @@
     <priority>0.3</priority>
   </url>
   <!-- faq.html intentionally omitted until the FAQ ships (avoid a 404 in the sitemap). Add on publish. -->
+  <url>
+    <loc>https://godvsthedevil.com/fan-content-policy.html</loc>
+    <lastmod>2026-10-12</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
 </urlset>
